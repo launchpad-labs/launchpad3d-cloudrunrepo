@@ -21,12 +21,12 @@ const app = express();
 app.use(pinoHttp);
 
 // Example endpoint
-app.get('/', async (req, res) => {
+app.get('/*', async (req, res) => {
   // Use basic logger without HTTP request info
   logger.info({logField: 'custom-entry', arbitraryField: 'custom-entry'}); // Example of structured logging
   // Use request-based logger with log correlation
   req.log.info('HERES A REQUEST LOG! PATH:'+req.path); // https://cloud.google.com/run/docs/logging#correlate-logs
-  res.send('UPDATED OUTPUT.');
+  res.send('UPDATED OUTPUT PATH:'+req.path);
 });
 
 export default app;
